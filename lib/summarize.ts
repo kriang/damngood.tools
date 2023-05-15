@@ -1,12 +1,15 @@
 import { loadSummarizationChain } from "langchain/chains"
 import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio"
-import { OpenAI } from "langchain/llms/openai"
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter"
 
-const model = new OpenAI({
-    temperature: 0,
-    modelName: "gpt-3.5-turbo",
-    openAIApiKey: process.env.OPENAI_API_KEY,
+import { GPT4All } from "./gpt4all-llm"
+
+if (!process.env.GPT4ALL_MODEL) {
+    throw new Error("Please, specify the `GPT4ALL_MODEL` environment variable")
+}
+
+const model = new GPT4All({
+    model: process.env.GPT4ALL_MODEL,
 })
 
 export async function generateSummary(url: string) {
@@ -16,7 +19,8 @@ export async function generateSummary(url: string) {
         chunkSize: 4000,
         chunkOverlap: 20,
     })
-    const docs = await textSplitter.splitDocuments(await loader.load())
+
+    const docs = (await textSplitter.splitDocuments(await loader.load()))
 
     const chain = loadSummarizationChain(model, { type: "map_reduce" })
     const res = await chain.call({
