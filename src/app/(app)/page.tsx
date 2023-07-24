@@ -13,6 +13,7 @@ import {
 import { getCurrentUser } from "@/lib/session"
 import { Tool } from "@/lib/tools"
 import { PageHeader } from "@/components/page-header"
+import SenjaEmbed from "@/components/senja-embed"
 
 import { tool } from "./tools/scrolling-screenshots/tool"
 
@@ -112,6 +113,19 @@ export default async function IndexPage() {
                     </div>
                 ))}
             </div>
+            {process.env.NEXT_PUBLIC_SENJA_WALL_WIDGET_ID && (
+                <div className="mt-10 flex max-w-[980px] flex-col items-start gap-2">
+                    <PageHeader
+                        heading="Beyond Expectations"
+                        subheading="People love using Damn Good Tools daily."
+                    />
+                </div>
+            )}
+            {process.env.NEXT_PUBLIC_SENJA_WALL_WIDGET_ID && (
+                <div className="mt-10">
+                    <SenjaEmbed widgetId={process.env.NEXT_PUBLIC_SENJA_WALL_WIDGET_ID} />
+                </div>
+            )}
         </>
     )
 }

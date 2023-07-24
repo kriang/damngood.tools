@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { fontHeading } from "@/lib/fonts"
 import { buttonVariants } from "@/components/ui/button"
+import SenjaEmbed from "@/components/senja-embed"
 
 export default function PricingPage() {
     const pricingPlans = [
@@ -73,6 +74,25 @@ export default function PricingPage() {
                     </div>
                 ))}
             </div>
+            {process.env.NEXT_PUBLIC_SENJA_WALL_WIDGET_ID && (
+                <div className="mt-20 flex flex-col items-center gap-10 text-center">
+                    <h1
+                        className={`text-3xl font-extrabold leading-tight tracking-tighter sm:text-3xl md:text-5xl lg:text-6xl ${fontHeading.variable}`}
+                    >
+                        Beyond Expectations
+                    </h1>
+                    <p className="max-w-[500px] text-lg text-muted-foreground sm:text-xl">
+                        People love using Damn Good Tools daily.
+                    </p>
+                </div>
+            )}
+            {process.env.NEXT_PUBLIC_SENJA_WALL_WIDGET_ID && (
+                <div className="mt-10">
+                    <SenjaEmbed
+                        widgetId={process.env.NEXT_PUBLIC_SENJA_WALL_WIDGET_ID}
+                    />
+                </div>
+            )}
         </>
     )
 }

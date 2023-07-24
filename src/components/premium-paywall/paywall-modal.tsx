@@ -34,7 +34,7 @@ export function PaywallModal() {
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
                     <AlertDialogAction asChild>
-                        <Link href="/sign-up">Get Started</Link>
+                        <Link href="/sign-up">Sign Up</Link>
                     </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
