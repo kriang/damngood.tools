@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { CheckCircle2, Zap } from "lucide-react"
+import { CheckCircle2, Heart, Zap } from "lucide-react"
 
 import { fontHeading } from "@/lib/fonts"
 import { buttonVariants } from "@/components/ui/button"
@@ -22,7 +22,6 @@ export default function PricingPage() {
         {
             name: "Premium",
             price: "$49",
-            potentialPrice: "$99",
             href: "/sign-up",
             subtitle: "a one-time payment",
             highlight: true,
@@ -65,11 +64,6 @@ export default function PricingPage() {
                             {p.name}
                         </div>
                         <div className="mt-5 text-3xl font-bold tracking-tight flex flex-row gap-2">
-                            {p.potentialPrice && (
-                                <span className="line-through text-muted-foreground">
-                                    {p.potentialPrice}
-                                </span>
-                            )}
                             {p.price}
                         </div>
                         {p.subtitle && (
@@ -91,8 +85,12 @@ export default function PricingPage() {
                             <div className="mt-5 w-full text-sm flex flex-col gap-2">
                                 {p.features.map((f) => (
                                     <div className="flex flex-row gap-2 items-center">
-                                        <CheckCircle2 className="text-green-400 dark:text-green-800 w-5 h-5" />
-                                        {f}
+                                        {f.startsWith("Support the product") ? (
+                                            <Heart className="text-red-500 dark:text-red-700 w-5 h-5" />
+                                        ) : (
+                                            <CheckCircle2 className="text-green-400 dark:text-green-800 w-5 h-5" />
+                                        )}
+                                        <span>{f}</span>
                                     </div>
                                 ))}
                             </div>
