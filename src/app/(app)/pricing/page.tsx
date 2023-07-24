@@ -29,7 +29,6 @@ export default function PricingPage() {
             features: [
                 "Support the product development",
                 "Access to premium tools and features",
-                "Delightful 50% discount",
                 "Shape the product for you",
                 "Chat with the founder",
                 "Priority support",
