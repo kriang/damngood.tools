@@ -22,7 +22,7 @@ const textSplitter = new RecursiveCharacterTextSplitter({
 })
 
 const model = new ChatOpenAI({
-    temperature: 0.9,
+    temperature: 0,
     openAIApiKey: process.env.OPENAI_API_KEY,
     modelName: "gpt-3.5-turbo",
 })
