@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { CheckCircle2, Heart, Zap } from "lucide-react"
+import { CheckCircle2, Flame, Heart, Zap } from "lucide-react"
 
 import { fontHeading } from "@/lib/fonts"
 import { buttonVariants } from "@/components/ui/button"
@@ -10,17 +10,18 @@ export default function PricingPage() {
         {
             name: "Free",
             price: "$0",
-            href: "/",
+            href: "/sign-up",
             subtitle: "enjoy basic features",
             highlight: false,
             callToAction: "Get Started",
             features: [
                 "Limited, but free access to most of the tools",
-                "Email support",
+                "Email support (48+ hours wait time)",
             ],
         },
         {
             name: "Premium",
+            upcomingPrice: "$99",
             price: "$47",
             href: "/sign-up",
             subtitle: "a one-time payment",
@@ -29,6 +30,7 @@ export default function PricingPage() {
             features: [
                 "Support the product development",
                 "Access to premium tools and features",
+                "Enjoy early %50 discount",
                 "Shape the product for you",
                 "Chat with the founder",
                 "Priority support",
@@ -57,13 +59,20 @@ export default function PricingPage() {
                         }`}
                     >
                         <div className="text-sm flex flex-row gap-2 items-center">
-                            {p.name.toLowerCase() == "premium" && (
+                            {p.name.toLowerCase() == "premium" ? (
                                 <Zap className="w-5 h-5 text-red-500 dark:text-red-700" />
+                            ) : (
+                                <Flame className="w-5 h-5 text-slate-500 dark:text-slate-700" />
                             )}
                             {p.name}
                         </div>
                         <div className="mt-5 text-3xl font-bold tracking-tight flex flex-row gap-2">
-                            {p.price}
+                            {p.upcomingPrice && (
+                                <span className="line-through text-muted-foreground">
+                                    {p.upcomingPrice}
+                                </span>
+                            )}
+                            <span>{p.price}</span>
                         </div>
                         {p.subtitle && (
                             <div className="mt-2 text-muted-foreground">
