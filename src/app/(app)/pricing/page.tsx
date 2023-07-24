@@ -87,7 +87,35 @@ export default function PricingPage() {
                 </div>
             )}
             {process.env.NEXT_PUBLIC_SENJA_WALL_WIDGET_ID && (
-                <div className="mt-10">
+                <div>
+                    <div className="flex flex-row gap-5 items-center justify-center my-10">
+                        <a
+                            key="day"
+                            href="https://www.producthunt.com/posts/damn-good-tools?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-damn&#0045;good&#0045;tools"
+                            target="_blank"
+                        >
+                            <img
+                                src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=395421&theme=neutral&period=daily"
+                                alt="Damn&#0032;Good&#0032;Tools - Easy&#0045;to&#0045;use&#0044;&#0032;fun&#0032;productivity&#0032;tools&#0032;&#0045;&#0032;free&#0032;&#0038;&#0032;open&#0045;source | Product Hunt"
+                                style={{ width: "250px", height: "54px" }}
+                                width="250"
+                                height="54"
+                            />
+                        </a>
+                        <a
+                            key="month"
+                            href="https://www.producthunt.com/posts/damn-good-tools?utm_source=badge-top-post-topic-badge&utm_medium=badge&utm_souce=badge-damn&#0045;good&#0045;tools"
+                            target="_blank"
+                        >
+                            <img
+                                src="https://api.producthunt.com/widgets/embed-image/v1/top-post-topic-badge.svg?post_id=395421&theme=neutral&period=monthly&topic_id=267"
+                                alt="Damn&#0032;Good&#0032;Tools - Easy&#0045;to&#0045;use&#0044;&#0032;fun&#0032;productivity&#0032;tools&#0032;&#0045;&#0032;free&#0032;&#0038;&#0032;open&#0045;source | Product Hunt"
+                                style={{ width: "250px", height: "54px" }}
+                                width="250"
+                                height="54"
+                            />
+                        </a>
+                    </div>
                     <SenjaEmbed
                         widgetId={process.env.NEXT_PUBLIC_SENJA_WALL_WIDGET_ID}
                     />
