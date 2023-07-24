@@ -15,7 +15,7 @@ export default function PricingPage() {
             highlight: false,
             callToAction: "Get Started",
             features: [
-                "Limited, but free access to most of the fools",
+                "Limited, but free access to most of the tools",
                 "Email support",
             ],
         },
