@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { CheckCircle2, Zap } from "lucide-react"
 
 import { fontHeading } from "@/lib/fonts"
 import { buttonVariants } from "@/components/ui/button"
@@ -13,22 +14,27 @@ export default function PricingPage() {
             subtitle: "enjoy basic features",
             highlight: false,
             callToAction: "Get Started",
+            features: [
+                "Limited, but free access to most of the fools",
+                "Email support",
+            ],
         },
         {
             name: "Premium",
-            price: "$45",
+            price: "$49",
+            potentialPrice: "$99",
             href: "/sign-up",
             subtitle: "a one-time payment",
             highlight: true,
             callToAction: "Get Started",
-        },
-        {
-            name: "Open-Source",
-            price: "Your Time",
-            href: "https://github.com/krasun/damngood.tools",
-            subtitle: "host yourself",
-            highlight: false,
-            callToAction: "Check Out",
+            features: [
+                "Support the product development",
+                "Access to premium tools and features",
+                "Delightful 50% discount",
+                "Shape the product for you",
+                "Chat with the founder",
+                "Priority support",
+            ],
         },
     ]
 
@@ -45,15 +51,25 @@ export default function PricingPage() {
                     payment once you need it.
                 </p>
             </div>
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 px-10 sm:px-20">
+            <div className="mt-10 flex flex-row flex-wrap gap-5 px-20 justify-center">
                 {pricingPlans.map((p) => (
                     <div
-                        className={`shadow dark:border dark:border-slate-800 rounded-3xl flex flex-col items-center p-5 ${
+                        className={`shadow dark:border dark:border-slate-800 rounded-3xl flex flex-col items-center p-5 min-w-[350px] ${
                             p.highlight && "shadow-lg"
                         }`}
                     >
-                        <div className="text-sm">{p.name}</div>
-                        <div className="mt-5 text-3xl font-bold tracking-tight">
+                        <div className="text-sm flex flex-row gap-2 items-center">
+                            {p.name.toLowerCase() == "premium" && (
+                                <Zap className="w-5 h-5 text-red-500 dark:text-red-700" />
+                            )}
+                            {p.name}
+                        </div>
+                        <div className="mt-5 text-3xl font-bold tracking-tight flex flex-row gap-2">
+                            {p.potentialPrice && (
+                                <span className="line-through text-muted-foreground">
+                                    {p.potentialPrice}
+                                </span>
+                            )}
                             {p.price}
                         </div>
                         {p.subtitle && (
@@ -71,6 +87,16 @@ export default function PricingPage() {
                                 {p.callToAction}
                             </Link>
                         </div>
+                        {p.features.length > 0 && (
+                            <div className="mt-5 w-full text-sm flex flex-col gap-2">
+                                {p.features.map((f) => (
+                                    <div className="flex flex-row gap-2 items-center">
+                                        <CheckCircle2 className="text-green-400 dark:text-green-800 w-5 h-5" />
+                                        {f}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
