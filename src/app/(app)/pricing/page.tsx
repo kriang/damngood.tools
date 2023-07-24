@@ -21,7 +21,7 @@ export default function PricingPage() {
         },
         {
             name: "Premium",
-            price: "$49",
+            price: "$47",
             href: "/sign-up",
             subtitle: "a one-time payment",
             highlight: true,
@@ -116,6 +116,7 @@ export default function PricingPage() {
                             key="day"
                             href="https://www.producthunt.com/posts/damn-good-tools?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-damn&#0045;good&#0045;tools"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             <img
                                 src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=395421&theme=neutral&period=daily"
@@ -129,6 +130,7 @@ export default function PricingPage() {
                             key="month"
                             href="https://www.producthunt.com/posts/damn-good-tools?utm_source=badge-top-post-topic-badge&utm_medium=badge&utm_souce=badge-damn&#0045;good&#0045;tools"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             <img
                                 src="https://api.producthunt.com/widgets/embed-image/v1/top-post-topic-badge.svg?post_id=395421&theme=neutral&period=monthly&topic_id=267"
