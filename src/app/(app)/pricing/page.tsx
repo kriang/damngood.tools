@@ -34,7 +34,7 @@ export default function PricingPage() {
                 "No ads",
                 "Direct chat with the founder",
                 "Support the product development",
-                "Priority support",
+                "Priority chat support",
             ],
         },
     ]
