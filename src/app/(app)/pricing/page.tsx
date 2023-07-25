@@ -21,7 +21,7 @@ export default function PricingPage() {
         },
         {
             name: "Premium",
-            upcomingPrice: "$99",
+            upcomingPrice: "$75",
             price: "$47",
             href: "/sign-up",
             subtitle: "a one-time payment",
@@ -29,7 +29,7 @@ export default function PricingPage() {
             callToAction: "Get Started",
             features: [
                 "Access to premium tools and features",
-                "Enjoy early %50 discount",
+                "Enjoy early %40 discount",
                 "Shape the product for you",
                 "No ads",
                 "Direct chat with the founder",
