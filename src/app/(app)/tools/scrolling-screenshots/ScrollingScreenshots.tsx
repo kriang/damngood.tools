@@ -4,7 +4,7 @@ import { Ref, forwardRef, useState } from "react"
 import Link from "next/link"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SelectProps } from "@radix-ui/react-select"
-import { ExternalLink, Loader2 } from "lucide-react"
+import { ExternalLink, HelpCircle, Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 
 import {
@@ -32,6 +32,12 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Skeleton } from "@/components/ui/skeleton"
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { useToast } from "@/components/ui/use-toast"
 import { PaywallModal } from "@/components/premium-paywall/paywall-modal"
 import { PremiumLock } from "@/components/premium-paywall/premium-lock"
@@ -341,7 +347,26 @@ export function ScrollingScreenshots({ isPremium }: { isPremium: boolean }) {
                         name="duration"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Duration</FormLabel>
+                                <FormLabel className="flex flex-row items-center gap-2">
+                                    Duration
+                                    <TooltipProvider delayDuration={200}>
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <HelpCircle className="w-4 h-4 text-muted-foreground" />
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                <p>
+                                                    The resulting generated
+                                                    video/animation might be
+                                                    much shorter
+                                                    <br /> than the set duration
+                                                    if the scrolling ends
+                                                    earlier.
+                                                </p>
+                                            </TooltipContent>
+                                        </Tooltip>
+                                    </TooltipProvider>
+                                </FormLabel>
                                 <FormControl>
                                     <div className="flex flex-row gap-2 items-center">
                                         <Input
@@ -360,6 +385,11 @@ export function ScrollingScreenshots({ isPremium }: { isPremium: boolean }) {
                                             min={3}
                                             step={1}
                                             {...field}
+                                            onChange={(e) =>
+                                                field.onChange(
+                                                    e.target.valueAsNumber
+                                                )
+                                            }
                                         />
                                         {premiumProperties.duration &&
                                             !isPremium && <PremiumLock />}
