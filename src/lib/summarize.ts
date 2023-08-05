@@ -16,7 +16,30 @@ export async function generateSummary(url: string) {
         chunkSize: 4000,
         chunkOverlap: 20,
     })
-    let docs = (await textSplitter.splitDocuments(await loader.load())).slice(0, 2)
+    let docs = (await textSplitter.splitDocuments(await loader.load())).slice(
+        0,
+        2
+    )
+
+    const chain = loadSummarizationChain(model, { type: "map_reduce" })
+    const res = await chain.call({
+        input_documents: docs,
+    })
+
+    if (res && res.text) {
+        return res.text
+    }
+
+    return null
+}
+
+export async function generateTextSummary(text: string) {
+    const textSplitter = new RecursiveCharacterTextSplitter({
+        chunkSize: 4000,
+        chunkOverlap: 20,
+    })
+
+    let docs = await textSplitter.createDocuments([text])
 
     const chain = loadSummarizationChain(model, { type: "map_reduce" })
     const res = await chain.call({

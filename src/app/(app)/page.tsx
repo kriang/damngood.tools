@@ -76,6 +76,13 @@ export default async function IndexPage() {
             icon: <MessageSquare />,
             link: "/tools/damn-good-chat",
         },
+        {
+            name: "Record and Transcribe Audio",
+            description:
+                "Quickly record an audio note and get transcribed text and a short summary as a bonus.",
+            icon: <MessageSquare />,
+            link: "/tools/record-and-transcribe-audio",
+        },
         ...tools.map((t) => {
             return {
                 ...t,
