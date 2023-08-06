@@ -79,7 +79,16 @@ export function AudioRecorder({
 
         const stopTrackingLevel = trackLevel(stream, setInputVolumeLevel)
 
-        const mediaRecorder = new MediaRecorder(stream, {})
+        const options: MediaRecorderOptions = {}
+        if (MediaRecorder.isTypeSupported("audio/mp4")) {
+            options.mimeType = "audio/mp4"
+        } else if (MediaRecorder.isTypeSupported("audio/webm")) {
+            options.mimeType = "audio/webm"
+        } else if (MediaRecorder.isTypeSupported("video/mp4")) {        
+            options.mimeType = "video/mp4"
+        }
+
+        const mediaRecorder = new MediaRecorder(stream, options)
         mediaRecorder.ondataavailable = (e) => {
             if (e.data?.size) {
                 onAudioAvailable(e.data, e.data.type)

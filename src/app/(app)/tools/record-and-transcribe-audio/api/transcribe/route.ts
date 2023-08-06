@@ -25,6 +25,8 @@ export async function POST(request: NextRequest) {
         extension = extension == "weba" ? "webm" : extension
         extension = extension == "m4a" ? "mp4" : extension
 
+        console.log(`Transcribing ${extension} audio...`)
+
         const fileStream = Readable.from(Buffer.from(await file.arrayBuffer()))
         // @ts-expect-error a workaround to bypass the OpenAI API limitations
         fileStream.path = `audio.${extension}`
