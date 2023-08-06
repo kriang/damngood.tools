@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { Mic, RotateCcw, Square } from "lucide-react"
 
 import { Progress } from "@/components/ui/progress"
@@ -74,17 +74,26 @@ export function AudioRecorder({
 
     const onStartRecording = async () => {
         const stream = await navigator.mediaDevices.getUserMedia({
-            audio: { noiseSuppression: true, echoCancellation: true },
+            audio: {
+                noiseSuppression: false,
+                echoCancellation: false,
+                autoGainControl: false,
+            },
+            video: false,
         })
 
         const stopTrackingLevel = trackLevel(stream, setInputVolumeLevel)
 
-        const options: MediaRecorderOptions = {}
-        if (MediaRecorder.isTypeSupported("audio/mp4")) {
-            options.mimeType = "audio/mp4"
-        } else if (MediaRecorder.isTypeSupported("audio/webm")) {
+        const options: MediaRecorderOptions = {
+            audioBitsPerSecond: 128000,
+        }
+        if (MediaRecorder.isTypeSupported("audio/webm")) {
             options.mimeType = "audio/webm"
-        } else if (MediaRecorder.isTypeSupported("video/mp4")) {        
+        } else if (MediaRecorder.isTypeSupported("audio/ogg")) {
+            options.mimeType = "audio/ogg"
+        } else if (MediaRecorder.isTypeSupported("audio/mp4")) {
+            options.mimeType = "audio/mp4"
+        } else if (MediaRecorder.isTypeSupported("video/mp4")) {
             options.mimeType = "video/mp4"
         }
 
