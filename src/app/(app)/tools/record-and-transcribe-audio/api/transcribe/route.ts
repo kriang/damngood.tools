@@ -1,6 +1,7 @@
 import { Readable } from "node:stream"
 import { NextRequest, NextResponse } from "next/server"
 import { AxiosError } from "axios"
+import * as mimeTypes from "mime-types"
 
 import { openAIApi } from "@/lib/openai"
 import { generateTextSummary } from "@/lib/summarize"
@@ -20,9 +21,10 @@ export async function POST(request: NextRequest) {
         )
     }
     try {
+        const extension = mimeTypes.extension(file.type) as string
         const fileStream = Readable.from(Buffer.from(await file.arrayBuffer()))
         // @ts-expect-error a workaround to bypass the OpenAI API limitations
-        fileStream.path = "audio.webm"
+        fileStream.path = `audio.${extension == "weba" ? "webm" : extension}`
         const result = await openAIApi.createTranscription(
             fileStream as unknown as File,
             "whisper-1"

@@ -7,6 +7,7 @@ import {
     FileText,
     FileType,
     MessageSquare,
+    Mic,
     Monitor,
 } from "lucide-react"
 
@@ -80,7 +81,7 @@ export default async function IndexPage() {
             name: "Record and Transcribe Audio",
             description:
                 "Quickly record an audio note and get transcribed text and a short summary as a bonus.",
-            icon: <MessageSquare />,
+            icon: <Mic />,
             link: "/tools/record-and-transcribe-audio",
         },
         ...tools.map((t) => {

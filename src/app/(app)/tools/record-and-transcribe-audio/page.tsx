@@ -9,7 +9,7 @@ export default async function RecordAndTranscribeAudio() {
                 heading="Record and Transcribe Audio"
                 subheading="Quickly record an audio note and get transcribed text and a short summary as a bonus."
             />
-            <Recorder />
+            <Recorder maxRecordDuration={5 * 1000} />
         </>
     )
 }

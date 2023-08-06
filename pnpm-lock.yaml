@@ -92,6 +92,9 @@ dependencies:
   lucide-react:
     specifier: 0.105.0-alpha.4
     version: 0.105.0-alpha.4(react@18.2.0)
+  mime-types:
+    specifier: ^2.1.35
+    version: 2.1.35
   next:
     specifier: ^13.4.12
     version: 13.4.12(@babel/core@7.21.4)(react-dom@18.2.0)(react@18.2.0)
