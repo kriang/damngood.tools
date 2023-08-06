@@ -45,9 +45,9 @@ const trackLevel = (
         }
 
         const averageVolume = volumeSum / volumes.length
-        // value range: 127 = analyser.maxDecibels - analyser.minDecibels;
-        onUpdate((averageVolume * 100) / 127)
-    }, 150)
+        const range = analyser.maxDecibels - analyser.minDecibels
+        onUpdate((averageVolume * 100) / range)
+    }, 50)
 
     return () => {
         clearInterval(timerId)
@@ -155,7 +155,7 @@ export function AudioRecorder({
                     <Progress
                         value={inputVolumeLevel}
                         className="mx-auto w-[150px] h-2"
-                        indicatorClassName="bg-green-500"
+                        indicatorClassName="bg-green-500 duration-50"
                     />
                 </div>
             )}

@@ -21,10 +21,13 @@ export async function POST(request: NextRequest) {
         )
     }
     try {
-        const extension = mimeTypes.extension(file.type) as string
+        let extension = mimeTypes.extension(file.type) as string
+        extension = extension == "weba" ? "webm" : extension
+        extension = extension == "m4a" ? "mp4" : extension
+
         const fileStream = Readable.from(Buffer.from(await file.arrayBuffer()))
         // @ts-expect-error a workaround to bypass the OpenAI API limitations
-        fileStream.path = `audio.${extension == "weba" ? "webm" : extension}`
+        fileStream.path = `audio.${extension}`
         const result = await openAIApi.createTranscription(
             fileStream as unknown as File,
             "whisper-1"
