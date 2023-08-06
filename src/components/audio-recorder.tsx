@@ -23,7 +23,10 @@ const renderTimeLeft = (current: number, max: number) => {
     return `${padLeft(leftMinutes)}:${padLeft(leftSeconds)}`
 }
 
-const level = (audioStream: MediaStream, onUpdate: (level: number) => void) => {
+const trackLevel = (
+    audioStream: MediaStream,
+    onUpdate: (level: number) => void
+) => {
     const audioContext = new AudioContext()
     const audioSource = audioContext.createMediaStreamSource(audioStream)
     const analyser = audioContext.createAnalyser()
@@ -74,10 +77,10 @@ export function AudioRecorder({
             audio: { noiseSuppression: true, echoCancellation: true },
         })
 
-        const stop = level(stream, setInputVolumeLevel)
+        const stopTrackingLevel = trackLevel(stream, setInputVolumeLevel)
 
         const mediaRecorder = new MediaRecorder(stream, {})
-        mediaRecorder.ondataavailable = async (e) => {
+        mediaRecorder.ondataavailable = (e) => {
             if (e.data?.size) {
                 onAudioAvailable(e.data, e.data.type)
             }
@@ -88,7 +91,7 @@ export function AudioRecorder({
         }, 1000)
 
         mediaRecorder.onstop = () => {
-            stop()
+            stopTrackingLevel()
             const tracks = stream.getTracks()
             tracks.forEach((track) => track.stop())
             clearInterval(i)
@@ -98,6 +101,17 @@ export function AudioRecorder({
         setMediaRecorder(mediaRecorder)
         onStart()
     }
+
+    const restartRecording = useCallback(async () => {
+        if (mediaRecorder) {
+            mediaRecorder.ondataavailable = () => {}
+            mediaRecorder.stop()
+            setMediaRecorder(null)
+            setRecordDuration(0)
+
+            await onStartRecording()
+        }
+    }, [mediaRecorder])
 
     useEffect(() => {
         let t: NodeJS.Timeout | null = null
@@ -116,7 +130,16 @@ export function AudioRecorder({
 
     return (
         <>
-            <div className="flex flex-row gap-5">                <Button
+            <div className="flex flex-row gap-5">
+                {mediaRecorder && (
+                    <Button
+                        onClick={restartRecording}
+                        className="text-red-700 p-6"
+                    >
+                        <RotateCcw className="w-6 h-6" />
+                    </Button>
+                )}
+                <Button
                     onClick={mediaRecorder ? onStopRecording : onStartRecording}
                     className="text-red-700 p-6"
                 >
