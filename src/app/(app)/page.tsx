@@ -6,6 +6,7 @@ import {
     FileSearch,
     FileText,
     FileType,
+    FileVolume2,
     MessageSquare,
     Mic,
     Monitor,
@@ -83,6 +84,13 @@ export default async function IndexPage() {
                 "Quickly record an audio note and get transcribed text and a short summary as a bonus.",
             icon: <Mic />,
             link: "/tools/record-and-transcribe-audio",
+        },
+        {
+            name: "Transcribe Any Audio File",
+            description:
+                "Quickly upload an audio file and get the transcribed text with a short summary as a bonus.",
+            icon: <FileVolume2 />,
+            link: "/tools/transcribe-audio",
         },
         ...tools.map((t) => {
             return {
