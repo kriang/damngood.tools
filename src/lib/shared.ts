@@ -57,6 +57,13 @@ export type ScreenshotDevice = {
     deviceScaleFactor: number
 }
 
+export interface IdeaFilter {
+    key: string
+    text: string
+    state: "unknown" | true | false
+    explanation?: string
+}
+
 export const screenshotDevices: ScreenshotDevice[] = [
     {
         name: "Desktop",

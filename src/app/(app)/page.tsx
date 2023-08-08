@@ -7,6 +7,7 @@ import {
     FileText,
     FileType,
     FileVolume2,
+    Lightbulb,
     MessageSquare,
     Mic,
     Monitor,
@@ -91,6 +92,13 @@ export default async function IndexPage() {
                 "Quickly upload an audio file and get the transcribed text with a short summary as a bonus.",
             icon: <FileVolume2 />,
             link: "/tools/transcribe-audio",
+        },
+        {
+            name: "Idea Filter",
+            description:
+                "Define criteria for the ideas you want to work on next. Then, just throw ideas in and see which ideas win.",
+            icon: <Lightbulb />,
+            link: "/tools/idea-filter",
         },
         ...tools.map((t) => {
             return {

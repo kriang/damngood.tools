@@ -30,6 +30,17 @@ export const FixGrammarRequestSchema = z.object({
 })
 export type FixGrammarRequest = z.infer<typeof FixGrammarRequestSchema>
 
+export const FilterIdeaRequestSchema = z.object({
+    text: z.string().max(2048),
+    filters: z.array(
+        z.object({
+            key: z.string(),
+            text: z.string(),
+        })
+    ),
+})
+export type FilterIdeaRequest = z.infer<typeof FilterIdeaRequestSchema>
+
 export const PrivacyPolicyRequestSchema = z.object({
     companyName: z.optional(z.string()),
     productName: z.optional(z.string()),
