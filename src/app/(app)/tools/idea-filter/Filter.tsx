@@ -103,7 +103,7 @@ function AddFilterDialog({ onAdded }: { onAdded: (filter: string) => void }) {
                     <DialogTitle>Add one more idea filter</DialogTitle>
                     <DialogDescription>
                         Describe what you want to achieve with the idea so that
-                        it can be easily filtered if it doesn't fit.
+                        it can be easily filtered if it does not fit.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
