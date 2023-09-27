@@ -36,4 +36,4 @@ Licensed under the [AGPL-3.0 license](./LICENSE).
 
 Feel free to copy parts of the code and use them to improve your projects. Attribution or backlinks are much appreciated, especially to the [DamnGood.Tools](https://damngood.tools/).
 
-But please, don't use this code to compete directly with the tools. 
+But please, don't use this code to compete directly with the tools. # damngoodtools
