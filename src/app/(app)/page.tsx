@@ -111,7 +111,7 @@ export default async function IndexPage() {
     return (
         <>
             <PageHeader
-                heading="Oh, these damn good tools"
+                heading="Oh, these damn good AI tools"
                 subheading="Easy-to-use, fun tools—free (and open-source)."
             />
             <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3">
